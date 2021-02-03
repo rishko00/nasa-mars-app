@@ -1,0 +1,70 @@
+$size: 300px;
+$shadow: 0px 0px 29px 20px rgba(36,232,255,0.82);
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  header, .form1, button{
+    color: white;
+  }
+
+  header{
+    font-size: 32px;
+    font-family: cursive;
+    margin-bottom: 20px;
+  }
+
+  .form1{
+    ::ng-deep .mat-select-value{    
+      color: white!important;  
+      font-weight: bold;
+    }
+
+    mat-label{
+      color: white;
+    }
+  }
+
+  .form1, .photos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .photos{
+    mat-card{
+      margin: 2%;
+      border: none; 
+
+      &:hover{
+        box-shadow: $shadow;
+        transform: translateY(-4px);
+        transition: 500ms;
+      }
+
+      img{
+        width: $size;
+        height: $size;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  button{
+    width: $size;
+    background-color: transparent;
+    border: 2px dashed white;
+    &:hover{
+      box-shadow: $shadow;
+      background-color: white;
+      color: black;
+      text-shadow: 0 0 5px rgba(8, 7, 7, 0.431);
+      border: 2px solid white;
+    }
+  }
+}

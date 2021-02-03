@@ -1,0 +1,36 @@
+<div class="container">
+  <header>
+    NASA Mars Rover Photos
+  </header>
+
+  <div class="form1">
+    <mat-form-field appearance="fill">
+      <mat-label>Rover</mat-label>
+      <mat-select (click)="getPhotos()" [(ngModel)]="currentRover">
+        <mat-option [value]="r.key" *ngFor="let r of cameras | keyvalue">{{ r.key }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Camera</mat-label>
+      <mat-select (click)="getPhotos()" [(ngModel)]="currentCamera">
+        <mat-option [value]="c.value" *ngFor="let c of cameras[currentRover] | keyvalue">{{ c.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sol</mat-label>
+      <input type="number" matInput [(ngModel)]="sol" (click)="getPhotos()">
+    </mat-form-field>
+  </div>
+
+  <div class="photos">
+    <mat-card *ngFor="let p of photos | slice:0:photosCount">
+      <img mat-card-image (click)="showFullImage(p)" src="{{ p['img_src'] }}" title="Click for see full size image">
+      <mat-card-content> <b>Date:</b> {{ p['earth_date'] }}</mat-card-content>
+      <mat-card-content> <b>Camera:</b> {{ p['camera']['full_name'] }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <button mat-raised-button *ngIf="photos && photos.length > 6" (click)="loadMore()">Load More</button>
+</div>
